@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(cors( {
     origin: [
         "https://tomato-frontend-bvcf.onrender.com",
-        "https://tomato-admin-j7ad.onrender.com"
+        "https://tomato-admin-91b5.onrender.com"
     ]
 }));
 
