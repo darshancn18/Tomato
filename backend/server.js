@@ -20,8 +20,8 @@ dotenv.config();
 app.use(express.json());
 app.use(cors( {
     origin: [
-        "https://tomato-frontend-bvcf.onrender.com",
-        "https://tomato-admin-91b5.onrender.com"
+          process.env.FRONTEND_URL,
+          process.env.ADMIN_URL,
     ]
 }));
 
