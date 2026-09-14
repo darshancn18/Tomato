@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
 
-  const url = "https://tomato-fey7.onrender.com"
+  const url = "https://tomato-vm7v.onrender.com"
 
   return (
     <>
