@@ -8,21 +8,17 @@ import userRouter from "./routes/userRoute.js";
 import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderRoute.js";
 
-import "dotenv/config.js";
+dotenv.config();
 
 const app = express();
 
 const port = 4000;
 
-dotenv.config();
-
 // Middleware
 app.use(express.json());
-app.use(cors( {
-    origin: [
-          process.env.FRONTEND_URL,
-          process.env.ADMIN_URL,
-    ]
+
+app.use(cors({
+    origin: true
 }));
 
 // Connect Database
@@ -30,11 +26,8 @@ connectDB();
 
 // API endpoints
 app.use("/api/food", foodRouter);
-
 app.use("/api/users", userRouter);
-
 app.use("/api/cart", cartRouter);
-
 app.use("/api/order", orderRouter);
 
 // Serve uploaded images

@@ -1,21 +1,23 @@
 import foodModel from "../models/foodModel.js";
-import fs from "fs";
+import cloudinary from "../config/cloudinary.js";
 
 // add food item
 
 const addFood = async (req, res) => {
 
-    let image_filename = `${req.file.filename}`;
-
-    const food = new foodModel({
-        name: req.body.name,
-        description: req.body.description,
-        price: req.body.price,
-        category: req.body.category,
-        image: image_filename
-    });
-
     try {
+        const result = await cloudinary.uploader.upload(req.file.path, {
+            folder: "tomato-food"
+        });
+
+        const food = new foodModel({
+            name: req.body.name,
+            description: req.body.description,
+            price: req.body.price,
+            category: req.body.category,
+            image: result.secure_url
+        });
+
         await food.save();
 
         res.json({
@@ -34,6 +36,7 @@ const addFood = async (req, res) => {
 };
 
 // all food list
+
 const listFood = async (req, res) => {
     try {
         const foods = await foodModel.find({});
@@ -44,14 +47,10 @@ const listFood = async (req, res) => {
     }
 }
 
-//remove food item
 // remove food item
+
 const removeFood = async (req, res) => {
     try {
-        const food = await foodModel.findById(req.body.id);
-
-        fs.unlink(`uploads/${food.image}`, () => {});
-
         await foodModel.findByIdAndDelete(req.body.id);
 
         res.json({

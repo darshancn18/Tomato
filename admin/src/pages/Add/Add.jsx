@@ -63,10 +63,12 @@ const Add = ({ url }) => {
         toast.error(response.data.message || "Error adding food")
       }
 
-    } catch (error) {
-      console.log("ADD ERROR:", error)
-      toast.error("Something went wrong")
-    }
+    } catch (error)  {
+    console.log("ADD ERROR:", error)
+    console.log("ADD ERROR RESPONSE:", error.response?.data)
+    console.log("ADD ERROR STATUS:", error.response?.status)
+    toast.error(error.response?.data?.message || "Something went wrong")
+}
   }
 
   return (
