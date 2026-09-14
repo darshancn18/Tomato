@@ -26,6 +26,8 @@ const PlaceOrder = () => {
     phone: ""
   });
 
+  const navigate = useNavigate();
+
   const onChangeHandler = (event) => {
 
     const name = event.target.name;
@@ -88,7 +90,7 @@ const PlaceOrder = () => {
 
         console.log("Order ID:", response.data.orderId);
 
-        window.location.href = "/myorders";
+        navigate("/myorders");
 
       } else {
 
@@ -105,8 +107,6 @@ const PlaceOrder = () => {
     }
 
   };
-
-  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -276,4 +276,4 @@ const PlaceOrder = () => {
   );
 };
 
-export default PlaceOrder
+export default PlaceOrder;
