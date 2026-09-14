@@ -88,8 +88,7 @@ const PlaceOrder = () => {
 
         console.log("Order ID:", response.data.orderId);
 
-        window.location.href =
-          "/verify?success=true&orderId=" + response.data.orderId;
+        window.location.href = "/myorders";
 
       } else {
 
@@ -110,14 +109,15 @@ const PlaceOrder = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!token){
-      navigate('/cart')
+
+    if (!token) {
+      navigate('/cart');
     }
-    else if(getToatalCartAmount()===0){
-      navigate('/cart')
+    else if (getToatalCartAmount() === 0) {
+      navigate('/cart');
     }
 
-  },[token])
+  }, [token]);
 
   return (
     <form
@@ -276,4 +276,4 @@ const PlaceOrder = () => {
   );
 };
 
-export default PlaceOrder;
+export default PlaceOrder
